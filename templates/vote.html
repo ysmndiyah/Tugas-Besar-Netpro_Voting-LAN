@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Voting Online LAN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 380px;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            background: #f4f6f8;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .bar {
+            background: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 5px;
+            margin-bottom: 12px;
+        }
+
+        .bar-fill {
+            height: 14px;
+            background: #667eea;
+        }
+
+        /* Progress width classes */
+        .w-0  { width: 0%; }
+        .w-25 { width: 25%; }
+        .w-50 { width: 50%; }
+        .w-75 { width: 75%; }
+        .w-100 { width: 100%; }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🗳 Voting Online</h1>
+    <div class="subtitle">Sistem Voting Berbasis Jaringan LAN</div>
+
+    <form method="POST">
+        {% for key, value in options.items() %}
+        <label class="option">
+            <input type="radio" name="vote" value="{{ key }}" required>
+            {{ value }}
+        </label>
+        {% endfor %}
+        <button type="submit">Kirim Vote</button>
+    </form>
+
+    <div class="result">
+        <h3>📊 Hasil Voting</h3>
+
+        {% set total = votes.values() | sum %}
+
+        {% for key, value in votes.items() %}
+            <div>{{ options[key] }} ({{ value }} suara)</div>
+
+            <div class="bar">
+                {% if total == 0 %}
+                    <div class="bar-fill w-0"></div>
+                {% elif value * 4 >= total * 3 %}
+                    <div class="bar-fill w-75"></div>
+                {% elif value * 2 >= total %}
+                    <div class="bar-fill w-50"></div>
+                {% elif value > 0 %}
+                    <div class="bar-fill w-25"></div>
+                {% else %}
+                    <div class="bar-fill w-0"></div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <form action="/export" method="get">
+    <button type="submit" style="margin-top: 15px; background: #28a745;">
+        ⬇ Export Hasil Voting
+    </button>
+</form>
+
+
+    <footer>
+        © Voting LAN | Tugas Besar Jaringan Komputer by Al Yasmin
+    </footer>
+</div>
+
+</body>
+</html>
