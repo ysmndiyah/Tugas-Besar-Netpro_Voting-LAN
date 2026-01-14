@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 600px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #667eea;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background: #f4f6f8;
+        }
+
+        tr:hover {
+            background: #eef1ff;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions a {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .export {
+            background: #28a745;
+        }
+
+        .export:hover {
+            background: #218838;
+        }
+
+        .reset {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .reset:hover {
+            background: #e0a800;
+        }
+
+        .logout {
+            background: #dc3545;
+        }
+
+        .logout:hover {
+            background: #c82333;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>👑 Dashboard Admin</h1>
+    <div class="subtitle">
+        Monitoring & Manajemen Hasil Voting
+    </div>
+
+    <table>
+        <tr>
+            <th>Pilihan</th>
+            <th>Jumlah Suara</th>
+        </tr>
+
+        {% for key, value in votes.items() %}
+        <tr>
+            <td>{{ options[key] }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="actions">
+        <a href="/export" class="export">⬇ Export CSV</a>
+        <a href="/reset" class="reset">🔄 Reset Voting</a>
+        <a href="/logout" class="logout">🚪 Logout</a>
+    </div>
+
+    <footer>
+       © Admin Panel | Voted Kahim dan Wakahim 2026
+    </footer>
+</div>
+
+</body>
+</html>
