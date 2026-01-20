@@ -63,8 +63,4 @@ yang diperbarui secara berkala melalui API Flask tanpa perlu refresh halaman.
 
 ---
 
-## 🚀 Cara Menjalankan Aplikasi
 
-### 1️⃣ Install dependency
-```bash
-pip install flask werkzeug
