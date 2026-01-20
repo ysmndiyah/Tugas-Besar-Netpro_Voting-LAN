@@ -2,14 +2,14 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Login Admin</title>
+    <title>Admin Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
             margin: 0;
             font-family: "Segoe UI", Arial, sans-serif;
-            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            background: linear-gradient(135deg, #232526, #414345);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,7 +26,7 @@
         }
 
         h1 {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #333;
         }
 
@@ -36,8 +36,7 @@
             margin-bottom: 25px;
         }
 
-        input[type="text"],
-        input[type="password"] {
+        input {
             width: 100%;
             padding: 12px;
             border-radius: 8px;
@@ -48,7 +47,7 @@
 
         input:focus {
             outline: none;
-            border-color: #4ca1af;
+            border-color: #444;
         }
 
         button {
@@ -56,7 +55,7 @@
             padding: 12px;
             border: none;
             border-radius: 8px;
-            background: #2c3e50;
+            background: #232526;
             color: white;
             font-size: 15px;
             cursor: pointer;
@@ -64,18 +63,13 @@
         }
 
         button:hover {
-            background: #1f2c38;
+            background: #414345;
         }
 
         .error {
             color: red;
             font-size: 13px;
             margin-top: 10px;
-        }
-
-        .back-link {
-            margin-top: 15px;
-            font-size: 13px;
         }
 
         footer {
@@ -88,27 +82,23 @@
 <body>
 
 <div class="container">
-    <h1>👑 Login Admin</h1>
+    <h1>🛠 Admin Login</h1>
     <div class="subtitle">
-        Akses khusus administrator sistem voting
+        Login khusus administrator sistem voting
     </div>
 
     <form method="POST">
-        <input type="text" name="username" placeholder="Username Admin" required>
-        <input type="password" name="password" placeholder="Password Admin" required>
-        <button type="submit">Masuk</button>
+        <input type="text" name="username" placeholder="Admin Username" required>
+        <input type="password" name="password" placeholder="Admin Password" required>
+        <button type="submit">Login Admin</button>
     </form>
 
     {% if error %}
         <div class="error">{{ error }}</div>
     {% endif %}
 
-    <div class="back-link">
-        <a href="/">⬅ Kembali ke Login User</a>
-    </div>
-
     <footer>
-        © Admin Panel | Voted Kahim dan Wakahim 2026
+        © Admin Panel | Voting LAN
     </footer>
 </div>
 
